@@ -7,6 +7,6 @@
 ```git checkout develop``` -> develop branch
 
 ## Execute
-````
+```
 sh run_interpreter.sh
 ```
