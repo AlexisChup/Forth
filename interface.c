@@ -131,21 +131,21 @@ Retcode PurgerLigne()
 // afficher une valeur
 Retcode AfficherDonnee(Donnee val)
 {
-    fprintf(stdout,"%ld",val);
+    fprintf(stdout,"%ld\n",val);
     return OK;
 }
 
 // afficher une chaine
 Retcode AfficherChaine(char * str)
 {
-    fprintf(stdout,"%s",str);
+    fprintf(stdout,"%s\n",str);
     return OK;
 }
 
 // afficher un caractère
 Retcode AfficherChar(char car)
 {
-    fprintf(stdout,"%c",car);
+    fprintf(stdout,"%c\n",car);
     return OK;
 }
 

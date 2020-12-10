@@ -69,7 +69,6 @@ Retcode Code_Txt()
 
 // code DICO_DOT
 // affiche le TOS et l'enlève de la pile
-// TODO
 Retcode Code_Dot()
 {
     Donnee val;
@@ -126,8 +125,6 @@ Retcode Code_Emit()
     PilePop(&val);
 
     AfficherChar((char) val);
-    // retour à la ligne pour plus de lisibilité
-    Code_Cr();
     return OK;
 }     
 
