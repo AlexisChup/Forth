@@ -69,9 +69,7 @@ Retcode Interprete(char * element)
 		// printf("retCode : %d", ret);
 		if (ret == OK) // trouvé dans le dictionnaire
 		{
-			/*
-				*DEBUG
-			*/
+			// *DEBUG
 			// fprintf(stdout, "ret : %d\n", ret);
 			// fprintf(stdout, "mot : %s\n ", ref->mot);
 			// fprintf(stdout, "Type : %d\n", ref->type);

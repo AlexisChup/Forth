@@ -14,7 +14,7 @@
 #include "interprete.h"
 #include <stdio.h>
 
-// * CONTRÔLE GÉNÉRAL
+// CONTRÔLE GÉNÉRAL
 
 // code DICO_QUIT
 // quitte le programme principal
@@ -68,7 +68,7 @@ Retcode Code_Txt()
 // ! AFFICHAGE
 
 // code DICO_DOT
-// affiche le TOS
+// affiche le TOS et l'enlève de la pile
 // TODO
 Retcode Code_Dot()
 {
@@ -93,7 +93,6 @@ Retcode Code_Dots()
 }
 
 // affiche un retour à la ligne
-// TODO
 Retcode Code_Cr()
 {
     AfficherChar('\n');
@@ -101,7 +100,6 @@ Retcode Code_Cr()
 }
 
 // affiche un espace
-// TODO
 Retcode Code_Space()
 {
     AfficherChar(' ');
@@ -116,20 +114,20 @@ Retcode Code_Spaces()
 }
 
 // affiche le TOS comme un caractère (code ascii)
-// TODO
+// et l'enlève de la pile
 Retcode Code_Emit()
 {
     Donnee val;
-    //printf("Code_Emit()\n");
     // on vérifie qu'il y a au moins 2 nombres au sommet
     if (PileTop() < 1)
         return ERR_PILE_VIDE;
 
-    // pop TOS et NOS
+    // pop TOS
     PilePop(&val);
 
     AfficherChar((char) val);
-
+    // retour à la ligne pour plus de lisibilité
+    Code_Cr();
     return OK;
 }     
 
@@ -402,7 +400,6 @@ Retcode Code_Max()
 
 // code DICO_GET
 // lit le contenu pointé par le TOS et le met sur la pile
-// TODO
 Retcode Code_Get()
 {
     Donnee val;
@@ -439,7 +436,7 @@ Retcode Code_Get()
 // fonction à exécuter lorsque l'on interprete une variable en exécution immédiate :
 // on va ajouter en sommet de pile l'adresse de la valeur de ladite variable,
 // cad l'adresse du champ "valeur" de l'entrée du dictionnaire passée en paramètre
-//
+// TODO
 Retcode Code_RefValue(RefEntree ref)
 {
     // cette fonction générique est celle installée dans toutes les variables

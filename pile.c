@@ -60,7 +60,7 @@ Retcode PileGet(Donnee *val)
     else
     {
         *val = (Donnee)(NULL);
-        printf("The Stack is empty !\n");
+        printf("The Stack is empty !, indexStack : %d\n", indexOfTheStack);
 
         return ERR_PILE_VIDE;
     }
