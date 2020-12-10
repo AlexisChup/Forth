@@ -11,6 +11,8 @@
 
 #include "forth.h"
 
+#define MAX_PILE_D 100 // taille de la pile de données
+
 extern Retcode PileInit();	// (ré)initialise la pile de données
 
 extern Retcode PilePush(Donnee val); // ajoute la valeur en paramètre sur le sommet de la pile. Retourne 0 si OK, un code d'erreur sinon

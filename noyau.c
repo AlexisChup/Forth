@@ -14,6 +14,8 @@
 #include "interprete.h"
 #include <stdio.h>
 
+// * CONTRÔLE GÉNÉRAL
+
 // code DICO_QUIT
 // quitte le programme principal
 Retcode Code_Quit()
@@ -22,33 +24,193 @@ Retcode Code_Quit()
     return OK;
 }
 
+// ! GESTION DE CONTEXTE
+
+// imprime le TOS
+// TODO
+Retcode Code_Comm()
+{
+    return ERR_NON_IMPL;
+}     
+
+// code DICO_ANTISLASH
+// vide le buffer d'entrée
+Retcode Code_AntiSlash()
+{
+    Retcode ret;
+    ret = PurgerLigne();
+
+    return ret;
+}
+
+// définition d’un nouveau mot
+// TODO
+Retcode Code_Def()
+{
+    return ERR_NON_IMPL;
+}
+
+// définit une variable permanente
+// TODO
+Retcode Code_Variable()
+{
+    return ERR_NON_IMPL;
+}
+
+// ‘imprime’ le texte jusqu’à rencontrer le mot "
+// TODO
+Retcode Code_Txt()
+{
+    return ERR_NON_IMPL;
+}      
+
+
+// ! AFFICHAGE
+
+// code DICO_DOT
+// affiche le TOS
+// TODO
+Retcode Code_Dot()
+{
+    Donnee val;
+
+    // on vérifie qu'il y a au moins 2 nombres au sommet
+    if (PileTop() < 1)
+        return ERR_PILE_VIDE;
+
+    // pop TOS et NOS
+    PilePop(&val);
+    AfficherDonnee(val);
+
+    return OK;
+}
+
+// affiche de la pile active
+// TODO
+Retcode Code_Dots()
+{
+    return ERR_NON_IMPL;
+}
+
+// affiche un retour à la ligne
+// TODO
+Retcode Code_Cr()
+{
+    AfficherChar('\n');
+    return OK;
+}
+
+// affiche un espace
+// TODO
+Retcode Code_Space()
+{
+    AfficherChar(' ');
+    return OK;
+}
+
+// affiche <n> espaces, <n> étant la valeur du TOS
+// TODO
+Retcode Code_Spaces()
+{
+    return ERR_NON_IMPL;
+}
+
+// affiche le TOS comme un caractère (code ascii)
+// TODO
+Retcode Code_Emit()
+{
+    Donnee val;
+    //printf("Code_Emit()\n");
+    // on vérifie qu'il y a au moins 2 nombres au sommet
+    if (PileTop() < 1)
+        return ERR_PILE_VIDE;
+
+    // pop TOS et NOS
+    PilePop(&val);
+
+    AfficherChar((char) val);
+
+    return OK;
+}     
+
+
+// ! MANIPULATION DE LA PILE
+
+// suprime le TOS
+// TODO
+Retcode Code_Drop()
+{
+    return ERR_NON_IMPL;
+}
+
+// suprime le NOS
+// TODO
+Retcode Code_Nip()
+{
+    return ERR_NON_IMPL;
+}      
 // code DICO_DUP
 // duplique  le TOS
+// TODO
 Retcode Code_Dup()
 {
     Donnee val;
     // on vérifie qu'il y a au moins 2 éléments
     if (PileTop() < 1)
         return ERR_PILE_VIDE;
+
     if (PileTop() >= PileMax())
         return ERR_PILE_PLEINE;
+
     PileGet(&val); // extraire le TOS sans le consommer
     PilePush(val); // le rajouter en TOS
+    
     return OK;
 }
 
 // code DICO_SWAP
 // échange le TOS et le NOS
+// TODO
 Retcode Code_Swap()
 {
     Donnee val;
     // on vérifie qu'il y a au moins 2 éléments
     if (PileTop() < 2)
         return ERR_PILE_VIDE;
+
     PilePopN(&val,1); // extraire le NOS
     PilePush(val); // le replacer en TOS
+
     return OK;
 }
+
+// recopie le NOS au TOS
+// TODO
+Retcode Code_Over()
+{
+    return ERR_NON_IMPL;
+}
+
+// effectue une rotation entre les 3 premiers éléments (TOS/NOS/NNOS --> NOS/NNOS/TOS)
+// TODO
+Retcode Code_Rot()
+{
+    return ERR_NON_IMPL;
+}
+
+// effectue une rotation entre les 3 premiers éléments (TOS/NOS/NNOS --> NNOS/TOS/NOS)
+// TODO
+Retcode Code_MinusRot()
+{
+    return ERR_NON_IMPL;
+}
+
+// duplique le NOS(n) sur le TOS
+// TODO
+Retcode Code_Pick()
+{
+    return ERR_NON_IMPL;
+}     
 
 // code DICO_ROLL
 // utilise le TOS comme index xN pour effectuer une rotation des xN+1 éléments suivants
@@ -57,6 +219,7 @@ Retcode Code_Swap()
 //  (0 ROLL) sans effet
 //  (1 ROLL) équivalent à (SWAP)
 //  (2 ROLL) équivalent à (ROT)
+// TODO
 Retcode Code_Roll()
 {
     Donnee val;
@@ -64,22 +227,104 @@ Retcode Code_Roll()
     // on vérifie qu'il y a au moins un nombre au sommet
     if (PileTop() < 1)
         return ERR_PILE_VIDE;
+
     PilePop(&val); // extraire le TOS
     index = (Index)val; // le convertir en décalage
     // cas particulier : 0 ROLL est sans effet (autre que consommer le 0)
     // on optimise en retournant directement
     if (index == 0)
         return OK;
+
     // on vérifie qu'il y a au moins N+1 éléments
     if (PileTop() < index+1)
         return ERR_PILE_OUT;
+
     PilePopN(&val,index); // extraite le xNieme élément
     PilePush(val); // le replacer comme TOS
+
     return OK;
 }
 
+
+// ! OPÉRATIONS LOGIQUES
+
+// duplique la valeur du TOS si non-zéro
+// TODO
+Retcode Code_AskDup()
+{
+    return ERR_NON_IMPL;
+}
+
+// empile -1
+// TODO
+Retcode Code_True()
+{
+    return ERR_NON_IMPL;
+}
+
+// empile 0
+// TODO
+Retcode Code_False()
+{
+    return ERR_NON_IMPL;
+}
+
+// empile -1 si le NOS est inférieur au TOS, 0 sinon
+// TODO
+Retcode Code_Inf()
+{
+    return ERR_NON_IMPL;
+}
+
+// empile -1 si le NOS est supérieur au TOS, 0 sinon
+// TODO
+Retcode Code_InfEgal()
+{
+    return ERR_NON_IMPL;
+}
+
+// empile -1 si le NOS est égal au TOS, 0 sinon
+// TODO
+Retcode Code_Egal()
+{
+    return ERR_NON_IMPL;
+}
+
+// empile -1 si le NOS est différent du TOS, 0 sinon
+// TODO
+Retcode Code_Diff()
+{
+    return ERR_NON_IMPL;
+}
+
+// empile -1 si le TOS élément est égal à 0, 0 sinon
+// TODO
+Retcode Code_ZeroEgal()
+{
+    return ERR_NON_IMPL;
+}
+
+// empile -1 si le TOS élément est différent de 0, 0 sinon
+// TODO
+Retcode Code_ZeroDiff()
+{
+    return ERR_NON_IMPL;
+} 
+
+/*
+ ! OPÉRATIONS MATHÉMATIQUES
+*/
+
+// remplace le TOS par son négatif
+// TODO
+Retcode Code_Negate()
+{
+    return ERR_NON_IMPL;
+}   
+
 // code DICO_PLUS
 // tos nos -> tos+nos
+// TODO
 Retcode Code_Plus()
 {
     Donnee tos,nos,resultat;
@@ -87,36 +332,96 @@ Retcode Code_Plus()
     // on vérifie qu'il y a au moins 2 nombres au sommet
     if (PileTop() < 2)
         return ERR_PILE_VIDE;
+
     // pop TOS et NOS
     PilePop(&tos);
     PilePop(&nos);
+
     resultat = tos + nos;
     PilePush(resultat);
+
     return OK;
 }
 
-// code DICO_DOT
-// affiche le TOS
-Retcode Code_Dot()
+// empile la différence du TOS et du NOS
+// TODO
+Retcode Code_Moins()
+{
+    return ERR_NON_IMPL;
+}
+
+// empile le produit du TOS et du NOS
+// TODO
+Retcode Code_Mult()
+{
+    return ERR_NON_IMPL;
+}
+
+// empile le résultat (diviseur) de la division entière du TOS et du NOS
+// TODO
+Retcode Code_Div()
+{
+    return ERR_NON_IMPL;
+}
+
+// empile le reste de  la division entière du TOS et du NOS
+// TODO
+Retcode Code_Mod()
+{
+    return ERR_NON_IMPL;
+}
+
+// empile le reste et le diviseur de la division entière du TOS et du NOS
+// TODO
+Retcode Code_DivMod()
+{
+    return ERR_NON_IMPL;
+}
+
+// remplace le TOS par sa valeur absolue
+// TODO
+Retcode Code_Abs()
+{
+    return ERR_NON_IMPL;
+}
+
+// empile le plus petit du TOS et du NOS
+// TODO
+Retcode Code_Min()
+{
+    return ERR_NON_IMPL;
+}
+
+// empile le plus grand du TOS et du NOS
+// TODO
+Retcode Code_Max()
+{
+    return ERR_NON_IMPL;
+}      
+
+
+// code DICO_GET
+// lit le contenu pointé par le TOS et le met sur la pile
+// TODO
+Retcode Code_Get()
 {
     Donnee val;
-    //printf("Code_Dot()\n");
+    Donnee *ptr;
+
     // on vérifie qu'il y a au moins 2 nombres au sommet
     if (PileTop() < 1)
-        return ERR_PILE_VIDE;
-    // pop TOS et NOS
-    PilePop(&val);
-    AfficherDonnee(val);
-    return OK;
-}
+        return ERR_PILE_VIDE;   
 
-// code DICO_SLASH
-// vide le buffer d'entrée
-Retcode Code_Slash()
-{
-    Retcode ret;
-    ret = PurgerLigne();
-    return ret;
+    // on décompose : lire le sommet de la pile comme une donnée
+    PilePop(&val);  
+    // le convertir en pointeur de donnée
+    ptr = (Donnee*)val;
+    // lire la donnée pointée
+    val = *ptr;
+    // l'empliler sur le sommet de la pile
+    PilePush(val);
+
+    return OK;
 }
 
 /*
