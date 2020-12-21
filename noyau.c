@@ -185,7 +185,6 @@ Retcode Code_Nip()
 {
     Donnee val;
     Index indexOfTheStack = PileTop();
-    printf("indexOTS : %d\n", indexOfTheStack);
 
     if (indexOfTheStack < 2)
         return ERR_PILE_OUT;
@@ -193,7 +192,8 @@ Retcode Code_Nip()
     PilePopN(&val, indexOfTheStack-2);
 
     return OK;
-}      
+}
+
 // code DICO_DUP
 // duplique  le TOS
 // TODO
