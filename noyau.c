@@ -330,7 +330,6 @@ Retcode Code_Pick()
 //  (0 ROLL) sans effet
 //  (1 ROLL) équivalent à (SWAP)
 //  (2 ROLL) équivalent à (ROT)
-// TODO
 Retcode Code_Roll()
 {
     Donnee val;
@@ -350,7 +349,7 @@ Retcode Code_Roll()
     if (PileTop() < index+1)
         return ERR_PILE_OUT;
 
-    PilePopN(&val,index); // extraite le xNieme élément
+    PilePopN(&val,PileTop() -1 - index); // extraite le xNieme élément
     PilePush(val); // le replacer comme TOS
 
     return OK;
