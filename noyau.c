@@ -196,7 +196,6 @@ Retcode Code_Nip()
 
 // code DICO_DUP
 // duplique  le TOS
-// TODO
 Retcode Code_Dup()
 {
     Donnee val;
