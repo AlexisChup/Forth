@@ -65,7 +65,7 @@ Retcode Code_Txt()
 }      
 
 
-// ! AFFICHAGE
+// AFFICHAGE
 
 // code DICO_DOT
 // affiche le TOS et l'enlève de la pile
@@ -84,11 +84,29 @@ Retcode Code_Dot()
     return OK;
 }
 
-// affiche de la pile active
-// TODO
+// affichage non destructif de la pile active
 Retcode Code_Dots()
 {
-    return ERR_NON_IMPL;
+    Donnee val;
+    Index indexOfTheStack = PileTop();
+    Retcode ret;
+
+    if (indexOfTheStack < 1)
+        return ERR_PILE_VIDE;
+        
+    // index need to be a SIGNED int, otherwize the loop not working correctly
+    // indeed, it will loop over negative number
+    for (int index = indexOfTheStack - 1; index >= 0; index--)
+    {
+        ret = PileGetN(&val, index);
+
+        if(ret != OK)
+            break;
+
+        AfficherDonnee(val);
+    }
+    
+    return OK;
 }
 
 // affiche un retour à la ligne
@@ -106,10 +124,28 @@ Retcode Code_Space()
 }
 
 // affiche <n> espaces, <n> étant la valeur du TOS
-// TODO
 Retcode Code_Spaces()
 {
-    return ERR_NON_IMPL;
+    Index indexOfTheStack = PileTop();
+
+    if(indexOfTheStack > 0)
+    {
+        Donnee val;
+        Retcode ret;
+
+        ret = PileGetN(&val, indexOfTheStack - 1);
+
+        if(ret != OK)
+            return ERR_NON_IMPL;
+
+        for (Donnee index = 0; index < val; index++)
+            Code_Space();
+        
+        
+        return OK;
+    } else
+        return ERR_PILE_VIDE;
+
 }
 
 // affiche le TOS comme un caractère (code ascii)

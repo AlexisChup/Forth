@@ -28,10 +28,12 @@ Retcode DicoInit()
     // *GESTION DE CONTEXTE
     DicoAdd("\\", MOT_NOYAU, DICO_ANTISLASH, DICO_NOYAU, 0L, &Code_AntiSlash, NULL);
 
-    // *AFFICHAGE
+    // AFFICHAGE
     DicoAdd(".", MOT_NOYAU, DICO_DOT, DICO_NOYAU, 0L, &Code_Dot, NULL);
+    DicoAdd(".S", MOT_NOYAU, DICO_DOTS, DICO_NOYAU, 0L, &Code_Dots, NULL);
     DicoAdd("CR", MOT_NOYAU, DICO_CR, DICO_NOYAU, 0L, &Code_Cr, NULL);
     DicoAdd("SPACE", MOT_NOYAU, DICO_SPACE, DICO_NOYAU, 0L, &Code_Space, NULL);
+    DicoAdd("SPACES", MOT_NOYAU, DICO_SPACES, DICO_NOYAU, 0L, &Code_Spaces, NULL);
     DicoAdd("EMIT", MOT_NOYAU, DICO_EMIT, DICO_NOYAU, 0L, &Code_Emit, NULL);
     
     // *MANIPULATION DE LA PILE

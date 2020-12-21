@@ -145,7 +145,7 @@ Retcode AfficherChaine(char * str)
 // afficher un caractère
 Retcode AfficherChar(char car)
 {
-    fprintf(stdout,"%c\n",car);
+    fprintf(stdout,"%c",car);
     return OK;
 }
 

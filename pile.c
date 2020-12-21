@@ -113,7 +113,7 @@ Retcode PilePopN(Donnee *val, Index index)
 
 Retcode PileGetN(Donnee *val, Index index)
 {
-    if(index <= indexOfTheStack && indexOfTheStack > 0)
+    if(index < indexOfTheStack && indexOfTheStack > 0)
     {
         *val = stack[index];
 
