@@ -8,6 +8,7 @@
 
 #include "forth.h"
 #include "interface.h"
+#include "dictionnaire.h"
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -36,11 +37,19 @@ Retcode lireLigne()
 {
     char * retb;
     int buflen;
+    Retcode ret;
+    RefEntree ref;
 
 	Prev = NULL; // positionne le pointeur de parcours
 
     // prompt à rendre optionnel
-	fprintf(stdout,">>");
+    // ret = DicoRecherche("PROMPT", &ref);
+    // if (ret == OK)
+    // {
+	    // fprintf(stdout,"%ld", ref->val);
+    // } else {
+    fprintf(stdout,">>");
+    // }
 
 	// lecture du buffer ligne
 	retb = fgets(Buffer,BUF_SIZE+1,stdin);
@@ -72,7 +81,7 @@ Retcode lireLigne()
 }
 
 // lire l'élément syntaxique suivant dans la ligne
-extern Retcode ElementSuivant(char **elem)
+Retcode ElementSuivant(char **elem)
 {
 	char * token;   // element lu
 	Retcode ret;    // code erreur
@@ -111,7 +120,7 @@ extern Retcode ElementSuivant(char **elem)
 }
 
 //fonction pour ignorer le reste d'une ligne
-extern Retcode PurgerLigne()
+Retcode PurgerLigne()
 {
     Buffer[0] = '\0';
     Prev = NULL;
@@ -122,14 +131,21 @@ extern Retcode PurgerLigne()
 // afficher une valeur
 Retcode AfficherDonnee(Donnee val)
 {
-    fprintf(stdout,"%ld",val);
+    fprintf(stdout,"%ld\n",val);
     return OK;
 }
 
 // afficher une chaine
 Retcode AfficherChaine(char * str)
 {
-    fprintf(stdout,"%s",str);
+    fprintf(stdout,"%s\n",str);
+    return OK;
+}
+
+// afficher un caractère
+Retcode AfficherChar(char car)
+{
+    fprintf(stdout,"%c",car);
     return OK;
 }
 

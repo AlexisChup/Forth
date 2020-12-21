@@ -36,8 +36,10 @@ int main(int argc, char * argv[])
         {
         case OK:
             ret = Interprete(element);
-            if (ret != OK)
+            if (ret != OK){
+                PurgerLigne(); //si erreur, on oublie le reste de la ligne d'entré
                 AfficheErreur(ret,"erreur lors de l'interpretation");
+            }
             break;
         case ERR_EOF:
             finSession = true;

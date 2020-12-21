@@ -48,7 +48,9 @@ typedef enum
 
 // quelques types et constantes utiles émulant C++
 typedef enum { false, true } bool;
-#define NULL (void*)0
+// #define NULL (void*)0 // commenté car déjà définie dans ma version de compilation (<stdio.h>)
 
+// définitions du nombre max de mots pour le dictionnaire
+#define NOMBRE_MAX_MOTS 100
 
 #endif

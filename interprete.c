@@ -25,12 +25,13 @@ InterpreteMode modeSession = MODE_EXEC;
 Retcode tokenToNum(char * element, Donnee * val)
 {
     // TODO : tenir compte de la base numérique en cours (décimal, hexa, etc)
+	// * OK pour celui là
     // on bloque ici en décimal
     char * fin;
 	*val = (Donnee)strtol(element,&fin,10);
-	// printf("conv: element=%s val=%ld buff=%p fin=%p *fin=%x\n",element,*val,element,fin,*fin);
+	printf("conv: element=%s val=%ld buff=%p fin=%p *fin=%x\n",element,*val,element,fin,*fin);
 
-	if (errno != 0) // y a-t-il eu une erreur de conversion ?
+	if (*fin != 0) // y a-t-il eu une erreur de conversion ?
 	{
 		return ERR_NUM_OVERFLOW;
 	}
@@ -56,27 +57,38 @@ Retcode Interprete(char * element)
 	Retcode ret;
 	Donnee val;
 
-	// fprintf(stderr,"interp: %s - mode %d\n",element,modeSession);
+	// DicoAfficheTous();
+
+	fprintf(stderr,"interp: %s - mode %d\n",element,modeSession);
 	switch (modeSession)
 	{
 	case MODE_EXEC:
 		// mode standard - exécution immédiate
 		// on commence par regarder dans le dictionnaire
-		ret = DicoRecherche(element,&ref);
+		ret = DicoRecherche(element, &ref);
+		// printf("retCode : %d", ret);
 		if (ret == OK) // trouvé dans le dictionnaire
 		{
+			// *DEBUG
+			// fprintf(stdout, "ret : %d\n", ret);
+			// fprintf(stdout, "mot : %s\n ", ref->mot);
+			// fprintf(stdout, "Type : %d\n", ref->type);
+			// fprintf(stdout, "flag : %d\n", ref->flag);
+			// fprintf(stdout, "val : %ld\n", ref->val);
+
 			// on regarde le type d'entrée
-			switch (/* TODO extrayez le type de l'entrée pointée par ref */)
+			switch (ref->type)
 			{
 			case MOT_NOYAU:
 				// y a-t-il du code associé ?
-				if (/* TODO extrayez le code associé à l'entrée, vérifiez si il existe */)
+				if (!ref->code)
 				{
 				    return ERR_DICO_NOCODE;
                     break;
 				}
 				// si oui, on exécute ce code
-				ret = /* TODO exécutez le code associé à l'entrée */;
+				// ret = /* TODO exécutez le code associé à l'entrée */;
+				ret = ref->code();
 				// et on retourne le code d'exécution
 				return ret;
 				break;
@@ -86,14 +98,16 @@ Retcode Interprete(char * element)
 				return ERR_DICO_TYPE_INCONNU;
             case MOT_VARIABLE:
                // y a-t-il du code associé ?
-				if (/* TODO extrayez le code associé à l'entrée, vérifiez si il existe */)
+				if (!ref->code)
+				// if (/* TODO extrayez le code associé à l'entrée, vérifiez si il existe */)
 				{
 				    return ERR_DICO_NOCODE;
 					break;
 				}
 				// si oui, on exécute ce code
 				// en lui passant la référence de l'entrée en paramètre
-				ret = /* TODO exécutez le code associé à l'entrée */;
+				ret = ref->code(ref->val);
+				// ret = /* TODO exécutez le code associé à l'entrée */;
 				// et on retourne le code d'exécution
 				return ret;
 				break;

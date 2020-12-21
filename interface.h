@@ -23,10 +23,13 @@ extern Retcode ElementSuivant(char **elem);
 extern Retcode PurgerLigne();
 
 // afficher une valeur
-Retcode AfficherDonnee(Donnee val);
+extern Retcode AfficherDonnee(Donnee val);
 
 // afficher une chaine
-Retcode AfficherChaine(char * str);
+extern Retcode AfficherChaine(char * str);
+
+// afficher un caractère
+extern Retcode AfficherChar(char car);
 
 // routine d'affichage de message d'erruer
 extern void AfficheErreur(Retcode code,char * mssg);
