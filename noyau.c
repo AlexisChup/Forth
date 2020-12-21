@@ -252,7 +252,6 @@ Retcode Code_Over()
 //  (1 ROLL) sans effet
 //  (2 ROLL) équivalent à (SWAP)
 //  (3 ROLL) équivalent à (ROT)
-// TODO
 Retcode Code_Rot()
 {
     Index indexOfTheStack = PileTop();
