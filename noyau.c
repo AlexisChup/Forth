@@ -214,7 +214,6 @@ Retcode Code_Dup()
 
 // code DICO_SWAP
 // échange le TOS et le NOS
-// TODO
 Retcode Code_Swap()
 {
     Donnee val;
