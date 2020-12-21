@@ -45,6 +45,7 @@ Retcode DicoInit()
     DicoAdd("ROT", MOT_NOYAU, DICO_ROT, DICO_NOYAU, 0L, &Code_Rot, NULL);
     DicoAdd("-ROT", MOT_NOYAU, DICO_MINUSROT, DICO_NOYAU, 0L, &Code_MinusRot, NULL);
     DicoAdd("ROLL", MOT_NOYAU, DICO_ROLL, DICO_NOYAU, 0L, &Code_Roll, NULL);
+    DicoAdd("PICK", MOT_NOYAU, DICO_PICK, DICO_NOYAU, 0L, &Code_Pick, NULL);
     
     // *OPÉRATIONS LOGIQUES
 

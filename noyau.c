@@ -317,10 +317,28 @@ Retcode Code_MinusRot()
 }
 
 // duplique le NOS(n) sur le TOS
-// TODO
 Retcode Code_Pick()
 {
-    return ERR_NON_IMPL;
+    Donnee val;
+    Index index = PileTop();
+
+    if (index < 1)
+        return ERR_PILE_OUT;
+
+    if (index >= PileMax())
+        return ERR_PILE_PLEINE;
+
+    PileGet(&val);
+    index = (Index)val; // le convertir en décalage
+
+    // on vérifie qu'il y a au moins N+1 éléments
+    if (PileTop() < index+1)
+        return ERR_PILE_OUT;
+
+    PileGetN(&val, (Index)index);
+    PilePush(val);
+
+    return OK;
 }     
 
 // code DICO_ROLL
