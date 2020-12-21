@@ -228,10 +228,21 @@ Retcode Code_Swap()
 }
 
 // recopie le NOS au TOS
-// TODO
 Retcode Code_Over()
 {
-    return ERR_NON_IMPL;
+    Donnee val;
+    Index indexOfTheStack = PileTop();
+
+    if (indexOfTheStack < 2)
+        return ERR_PILE_OUT;
+
+    if (indexOfTheStack >= PileMax())
+        return ERR_PILE_PLEINE;
+
+    PileGetN(&val, indexOfTheStack-2);
+    PilePush(val);
+
+    return OK;
 }
 
 // effectue une rotation entre les 3 premiers éléments (TOS/NOS/NNOS --> NOS/NNOS/TOS)
