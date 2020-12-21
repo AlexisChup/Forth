@@ -43,6 +43,7 @@ Retcode DicoInit()
     DicoAdd("SWAP", MOT_NOYAU, DICO_SWAP, DICO_NOYAU, 0L, &Code_Swap, NULL);
     DicoAdd("OVER", MOT_NOYAU, DICO_OVER, DICO_NOYAU, 0L, &Code_Over, NULL);
     DicoAdd("ROT", MOT_NOYAU, DICO_ROT, DICO_NOYAU, 0L, &Code_Rot, NULL);
+    DicoAdd("-ROT", MOT_NOYAU, DICO_MINUSROT, DICO_NOYAU, 0L, &Code_MinusRot, NULL);
     
     // *OPÉRATIONS LOGIQUES
 

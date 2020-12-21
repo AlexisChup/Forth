@@ -70,9 +70,9 @@ Retcode PilePushN(Donnee val, Index index)
 {
     if(index <= indexOfTheStack && indexOfTheStack < MAX_PILE_D)
     {
-        for (unsigned int index = indexOfTheStack; index > index - 1; index--)
+        for (unsigned int i = indexOfTheStack; i > index - 1; i--)
         {
-            stack[index] = stack[index-1];
+            stack[i] = stack[i-1];
         }
         
         stack[index] = val;

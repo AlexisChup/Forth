@@ -217,11 +217,13 @@ Retcode Code_Dup()
 Retcode Code_Swap()
 {
     Donnee val;
+    Index indexOfTheStack = PileTop();
+
     // on vérifie qu'il y a au moins 2 éléments
-    if (PileTop() < 2)
+    if (indexOfTheStack < 1)
         return ERR_PILE_VIDE;
 
-    PilePopN(&val,1); // extraire le NOS
+    PilePopN(&val, indexOfTheStack-2); // extraire le NOS
     PilePush(val); // le replacer en TOS
 
     return OK;
@@ -277,16 +279,41 @@ Retcode Code_Rot()
         return OK;
     }
     
-    
-
     return OK;
 }
 
 // effectue une rotation entre les 3 premiers éléments (TOS/NOS/NNOS --> NNOS/TOS/NOS)
-// TODO
+// cas particuliers :
+//  (x number of element)
+//  (0 ROLL) sans effet
+//  (1 ROLL) sans effet
+//  (2 ROLL) équivalent à (SWAP)
+//  (3 ROLL) équivalent à (ROT)
 Retcode Code_MinusRot()
 {
-    return ERR_NON_IMPL;
+    Index indexOfTheStack = PileTop();
+
+    if (indexOfTheStack == 0)
+    {
+        return ERR_PILE_VIDE;
+
+    } else if (indexOfTheStack == 1)
+    {
+        return OK;
+
+    } else if (indexOfTheStack == 2)
+    {
+        Code_Swap();
+        return OK;
+    } else 
+    {
+        Code_Rot();
+        Code_Rot();
+
+        return OK;
+    }
+    
+    return OK;
 }
 
 // duplique le NOS(n) sur le TOS
