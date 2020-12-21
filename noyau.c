@@ -168,17 +168,31 @@ Retcode Code_Emit()
 // ! MANIPULATION DE LA PILE
 
 // suprime le TOS
-// TODO
 Retcode Code_Drop()
 {
-    return ERR_NON_IMPL;
+    Donnee val;
+
+    if (PileTop() < 1)
+        return ERR_PILE_VIDE;
+
+    PilePop(&val);
+
+    return OK;
 }
 
 // suprime le NOS
-// TODO
 Retcode Code_Nip()
 {
-    return ERR_NON_IMPL;
+    Donnee val;
+    Index indexOfTheStack = PileTop();
+    printf("indexOTS : %d\n", indexOfTheStack);
+
+    if (indexOfTheStack < 2)
+        return ERR_PILE_OUT;
+
+    PilePopN(&val, indexOfTheStack-2);
+
+    return OK;
 }      
 // code DICO_DUP
 // duplique  le TOS

@@ -94,9 +94,9 @@ Retcode PilePopN(Donnee *val, Index index)
     {
         *val = stack[index];
 
-        for (unsigned int index = index ; index < indexOfTheStack; index++)
+        for (unsigned int i = index ; i < indexOfTheStack; i++)
         {
-            stack[index] = stack[index+1];
+            stack[i] = stack[i+1];
         }
 
         indexOfTheStack -= 1;
