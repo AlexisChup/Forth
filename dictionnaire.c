@@ -36,7 +36,7 @@ Retcode DicoInit()
     DicoAdd("SPACES", MOT_NOYAU, DICO_SPACES, DICO_NOYAU, 0L, &Code_Spaces, NULL);
     DicoAdd("EMIT", MOT_NOYAU, DICO_EMIT, DICO_NOYAU, 0L, &Code_Emit, NULL);
     
-    // *MANIPULATION DE LA PILE
+    // MANIPULATION DE LA PILE
     DicoAdd("DROP", MOT_NOYAU, DICO_DROP, DICO_NOYAU, 0L, &Code_Drop, NULL);
     DicoAdd("NIP", MOT_NOYAU, DICO_NIP, DICO_NOYAU, 0L, &Code_Nip, NULL);
     DicoAdd("DUP", MOT_NOYAU, DICO_DUP, DICO_NOYAU, 0L, &Code_Dup, NULL);

@@ -165,7 +165,7 @@ Retcode Code_Emit()
 }     
 
 
-// ! MANIPULATION DE LA PILE
+// MANIPULATION DE LA PILE
 
 // suprime le TOS
 Retcode Code_Drop()
