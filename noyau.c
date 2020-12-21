@@ -246,10 +246,41 @@ Retcode Code_Over()
 }
 
 // effectue une rotation entre les 3 premiers éléments (TOS/NOS/NNOS --> NOS/NNOS/TOS)
+// cas particuliers :
+//  (x number of element)
+//  (0 ROLL) sans effet
+//  (1 ROLL) sans effet
+//  (2 ROLL) équivalent à (SWAP)
+//  (3 ROLL) équivalent à (ROT)
 // TODO
 Retcode Code_Rot()
 {
-    return ERR_NON_IMPL;
+    Index indexOfTheStack = PileTop();
+
+    if (indexOfTheStack == 0)
+    {
+        return ERR_PILE_VIDE;
+
+    } else if (indexOfTheStack == 1)
+    {
+        return OK;
+
+    } else if (indexOfTheStack == 2)
+    {
+        Code_Swap();
+        return OK;
+    } else 
+    {
+        Donnee val;
+        PilePop(&val);
+        PilePushN(val, indexOfTheStack-3);
+
+        return OK;
+    }
+    
+    
+
+    return OK;
 }
 
 // effectue une rotation entre les 3 premiers éléments (TOS/NOS/NNOS --> NNOS/TOS/NOS)
