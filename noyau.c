@@ -526,9 +526,8 @@ Retcode Code_ZeroDiff()
     return OK;
 } 
 
-/*
- ! OPÉRATIONS MATHÉMATIQUES
-*/
+
+// OPÉRATIONS MATHÉMATIQUES
 
 // remplace le TOS par son négatif
 Retcode Code_Negate()
@@ -676,17 +675,39 @@ Retcode Code_Abs()
 }
 
 // empile le plus petit du TOS et du NOS
-// TODO
 Retcode Code_Min()
 {
-    return ERR_NON_IMPL;
+    Donnee tos,nos,resultat;
+    // on vérifie qu'il y a au moins 2 nombres au sommet
+    if (PileTop() < 2)
+        return ERR_PILE_VIDE;
+
+    // pop TOS et NOS
+    PilePop(&tos);
+    PilePop(&nos);
+
+    resultat = (tos < nos) ? tos : nos;
+    PilePush(resultat);
+
+    return OK;
 }
 
 // empile le plus grand du TOS et du NOS
-// TODO
 Retcode Code_Max()
 {
-    return ERR_NON_IMPL;
+    Donnee tos,nos,resultat;
+    // on vérifie qu'il y a au moins 2 nombres au sommet
+    if (PileTop() < 2)
+        return ERR_PILE_VIDE;
+
+    // pop TOS et NOS
+    PilePop(&tos);
+    PilePop(&nos);
+
+    resultat = (tos > nos) ? tos : nos;
+    PilePush(resultat);
+
+    return OK;
 }      
 
 
@@ -719,7 +740,7 @@ Retcode Code_Get()
 */
 
 /*
-* // FONCTIONS INDIRECTES ET AUTRES
+* // ! FONCTIONS INDIRECTES ET AUTRES
 ** autres fonctions utilisés par l'interprétation des mots
 ** Il s'agit ici de fonctions communes à plusieurs mots
 */
