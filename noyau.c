@@ -421,17 +421,39 @@ Retcode Code_False()
 }
 
 // empile -1 si le NOS est inférieur au TOS, 0 sinon
-// TODO
 Retcode Code_Inf()
 {
-    return ERR_NON_IMPL;
+    Donnee tos,nos,resultat;
+    // on vérifie qu'il y a au moins 2 nombres au sommet
+    if (PileTop() < 2)
+        return ERR_PILE_VIDE;
+
+    // pop TOS et NOS
+    PilePop(&tos);
+    PilePop(&nos);
+
+    resultat = (nos < tos) ? FORTH_TRUE : FORTH_FALSE;
+    PilePush(resultat);
+
+    return OK;
 }
 
 // empile -1 si le NOS est supérieur au TOS, 0 sinon
-// TODO
-Retcode Code_InfEgal()
+Retcode Code_Sup()
 {
-    return ERR_NON_IMPL;
+    Donnee tos,nos,resultat;
+    // on vérifie qu'il y a au moins 2 nombres au sommet
+    if (PileTop() < 2)
+        return ERR_PILE_VIDE;
+
+    // pop TOS et NOS
+    PilePop(&tos);
+    PilePop(&nos);
+
+    resultat = (nos > tos) ? FORTH_TRUE : FORTH_FALSE;
+    PilePush(resultat);
+
+    return OK;
 }
 
 // empile -1 si le NOS est égal au TOS, 0 sinon

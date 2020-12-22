@@ -40,7 +40,7 @@ extern Retcode Code_Quit(); // quitte la boucle principale
 
 // gestion de contexte
 extern Retcode Code_Comm();     // imprime le TOS
-extern Retcode Code_AntiSlash();    // vide la ligne en cours de lecture
+extern Retcode Code_AntiSlash();// vide la ligne en cours de lecture
 extern Retcode Code_Def();      // définition d’un nouveau mot 
 extern Retcode Code_Variable(); // définit une variable permanente
 extern Retcode Code_Txt();      // ‘imprime’ le texte jusqu’à rencontrer le mot "
@@ -69,7 +69,7 @@ extern Retcode Code_AskDup();   // duplique la valeur du TOS si non-zéro
 extern Retcode Code_True();     // empile -1
 extern Retcode Code_False();    // empile 0
 extern Retcode Code_Inf();      // empile -1 si le NOS est inférieur au TOS, 0 sinon
-extern Retcode Code_InfEgal();  // empile -1 si le NOS est supérieur au TOS, 0 sinon
+extern Retcode Code_Sup();      // empile -1 si le NOS est supérieur au TOS, 0 sinon
 extern Retcode Code_Egal();     // empile -1 si le NOS est égal au TOS, 0 sinon
 extern Retcode Code_Diff();     // empile -1 si le NOS est différent du TOS, 0 sinon
 extern Retcode Code_ZeroEgal(); // empile -1 si le TOS élément est égal à 0, 0 sinon
