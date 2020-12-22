@@ -399,17 +399,25 @@ Retcode Code_AskDup()
 }
 
 // empile -1
-// TODO
 Retcode Code_True()
 {
-    return ERR_NON_IMPL;
+    if (PileTop() >= PileMax())
+        return ERR_PILE_PLEINE;
+
+    PilePush(FORTH_TRUE);
+
+    return OK;
 }
 
 // empile 0
-// TODO
 Retcode Code_False()
 {
-    return ERR_NON_IMPL;
+    if (PileTop() >= PileMax())
+        return ERR_PILE_PLEINE;
+
+    PilePush(FORTH_FALSE);
+
+    return OK;
 }
 
 // empile -1 si le NOS est inférieur au TOS, 0 sinon

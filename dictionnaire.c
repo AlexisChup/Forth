@@ -49,6 +49,8 @@ Retcode DicoInit()
     
     // *OPÉRATIONS LOGIQUES
     DicoAdd("?DUP", MOT_NOYAU, DICO_ASKDUP, DICO_NOYAU, 0L, &Code_AskDup, NULL);
+    DicoAdd("TRUE", MOT_NOYAU, DICO_TRUE, DICO_NOYAU, 0L, &Code_True, NULL);
+    DicoAdd("FALSE", MOT_NOYAU, DICO_FALSE, DICO_NOYAU, 0L, &Code_False, NULL);
 
     // *OPÉRATIONS MATHÉMATIQUES
     DicoAdd("@", MOT_NOYAU, DICO_GET, DICO_NOYAU, 0L, &Code_Get, NULL);
