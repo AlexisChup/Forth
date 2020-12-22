@@ -58,7 +58,7 @@ Retcode DicoInit()
     DicoAdd("0=", MOT_NOYAU, DICO_ZEROEGAL, DICO_NOYAU, 0L, &Code_ZeroEgal, NULL);
     DicoAdd("0<>", MOT_NOYAU, DICO_ZERODIFF, DICO_NOYAU, 0L, &Code_ZeroDiff, NULL);
 
-    // *OPÉRATIONS MATHÉMATIQUES
+    // OPÉRATIONS MATHÉMATIQUES
     DicoAdd("NEGATE", MOT_NOYAU, DICO_NEGATE, DICO_NOYAU, 0L, &Code_Negate, NULL);
     DicoAdd("+", MOT_NOYAU, DICO_PLUS, DICO_NOYAU, 0L, &Code_Plus, NULL);
     DicoAdd("-", MOT_NOYAU, DICO_MOINS, DICO_NOYAU, 0L, &Code_Moins, NULL);
@@ -66,6 +66,9 @@ Retcode DicoInit()
     DicoAdd("/", MOT_NOYAU, DICO_DIV, DICO_NOYAU, 0L, &Code_Div, NULL);
     DicoAdd("MOD", MOT_NOYAU, DICO_MOD, DICO_NOYAU, 0L, &Code_Mod, NULL);
     DicoAdd("/MOD", MOT_NOYAU, DICO_DIVMOD, DICO_NOYAU, 0L, &Code_DivMod, NULL);
+    DicoAdd("ABS", MOT_NOYAU, DICO_ABS, DICO_NOYAU, 0L, &Code_Abs, NULL);
+    DicoAdd("MIN", MOT_NOYAU, DICO_MIN, DICO_NOYAU, 0L, &Code_Min, NULL);
+    DicoAdd("MAX", MOT_NOYAU, DICO_MAX, DICO_NOYAU, 0L, &Code_Max, NULL);
 
 
     DicoAdd("@", MOT_NOYAU, DICO_GET, DICO_NOYAU, 0L, &Code_Get, NULL);

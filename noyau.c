@@ -649,6 +649,7 @@ Retcode Code_DivMod()
 
     reste = tos % nos;
     diviseur = tos / nos;
+
     PilePush(reste);
     PilePush(diviseur);
 
@@ -656,10 +657,22 @@ Retcode Code_DivMod()
 }
 
 // remplace le TOS par sa valeur absolue
-// TODO
 Retcode Code_Abs()
 {
-    return ERR_NON_IMPL;
+    Donnee tos;
+    // on vérifie qu'il y a au moins 2 nombres au sommet
+    if (PileTop() < 1)
+        return ERR_PILE_VIDE;
+
+    // pop TOS
+    PilePop(&tos);
+
+    if(tos < 0)
+        PilePush(-tos);
+    else
+        PilePush(tos);
+
+    return OK;
 }
 
 // empile le plus petit du TOS et du NOS
@@ -706,7 +719,7 @@ Retcode Code_Get()
 */
 
 /*
-** FONCTIONS INDIRECTES ET AUTRES
+* // FONCTIONS INDIRECTES ET AUTRES
 ** autres fonctions utilisés par l'interprétation des mots
 ** Il s'agit ici de fonctions communes à plusieurs mots
 */
