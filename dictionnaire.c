@@ -62,6 +62,7 @@ Retcode DicoInit()
     DicoAdd("NEGATE", MOT_NOYAU, DICO_NEGATE, DICO_NOYAU, 0L, &Code_Negate, NULL);
     DicoAdd("+", MOT_NOYAU, DICO_PLUS, DICO_NOYAU, 0L, &Code_Plus, NULL);
     DicoAdd("-", MOT_NOYAU, DICO_MOINS, DICO_NOYAU, 0L, &Code_Moins, NULL);
+    DicoAdd("*", MOT_NOYAU, DICO_MULT, DICO_NOYAU, 0L, &Code_Mult, NULL);
 
 
     DicoAdd("@", MOT_NOYAU, DICO_GET, DICO_NOYAU, 0L, &Code_Get, NULL);
