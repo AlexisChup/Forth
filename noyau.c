@@ -374,7 +374,7 @@ Retcode Code_Roll()
 }
 
 
-// ! OPÉRATIONS LOGIQUES
+// OPÉRATIONS LOGIQUES
 
 // duplique la valeur du TOS si non-zéro
 Retcode Code_AskDup()

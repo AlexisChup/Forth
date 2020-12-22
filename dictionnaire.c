@@ -47,7 +47,7 @@ Retcode DicoInit()
     DicoAdd("ROLL", MOT_NOYAU, DICO_ROLL, DICO_NOYAU, 0L, &Code_Roll, NULL);
     DicoAdd("PICK", MOT_NOYAU, DICO_PICK, DICO_NOYAU, 0L, &Code_Pick, NULL);
     
-    // *OPÉRATIONS LOGIQUES
+    // OPÉRATIONS LOGIQUES
     DicoAdd("?DUP", MOT_NOYAU, DICO_ASKDUP, DICO_NOYAU, 0L, &Code_AskDup, NULL);
     DicoAdd("TRUE", MOT_NOYAU, DICO_TRUE, DICO_NOYAU, 0L, &Code_True, NULL);
     DicoAdd("FALSE", MOT_NOYAU, DICO_FALSE, DICO_NOYAU, 0L, &Code_False, NULL);
