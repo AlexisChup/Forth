@@ -496,7 +496,7 @@ Retcode Code_Diff()
 Retcode Code_ZeroEgal()
 {
     Donnee tos, resultat;
-    // on vérifie qu'il y a au moins 2 nombres au sommet
+    // on vérifie qu'il y a au moins 1 nombre au sommet
     if (PileTop() < 1)
         return ERR_PILE_VIDE;
 
@@ -513,7 +513,7 @@ Retcode Code_ZeroEgal()
 Retcode Code_ZeroDiff()
 {
     Donnee tos, resultat;
-    // on vérifie qu'il y a au moins 2 nombres au sommet
+    // on vérifie qu'il y a au moins 1 nombre au sommet
     if (PileTop() < 1)
         return ERR_PILE_VIDE;
 
@@ -531,19 +531,24 @@ Retcode Code_ZeroDiff()
 */
 
 // remplace le TOS par son négatif
-// TODO
 Retcode Code_Negate()
 {
-    return ERR_NON_IMPL;
+    Donnee val;
+
+    if (PileTop() < 1)
+        return ERR_PILE_VIDE;
+
+    PilePop(&val);
+    PilePush(-val);
+
+    return OK;
 }   
 
 // code DICO_PLUS
 // tos nos -> tos+nos
-// TODO
 Retcode Code_Plus()
 {
     Donnee tos,nos,resultat;
-    //printf("Code_Plus()\n");
     // on vérifie qu'il y a au moins 2 nombres au sommet
     if (PileTop() < 2)
         return ERR_PILE_VIDE;
@@ -559,10 +564,21 @@ Retcode Code_Plus()
 }
 
 // empile la différence du TOS et du NOS
-// TODO
 Retcode Code_Moins()
 {
-    return ERR_NON_IMPL;
+    Donnee tos,nos,resultat;
+    // on vérifie qu'il y a au moins 2 nombres au sommet
+    if (PileTop() < 2)
+        return ERR_PILE_VIDE;
+
+    // pop TOS et NOS
+    PilePop(&tos);
+    PilePop(&nos);
+
+    resultat = tos - nos;
+    PilePush(resultat);
+
+    return OK;
 }
 
 // empile le produit du TOS et du NOS
