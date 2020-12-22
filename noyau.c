@@ -493,17 +493,37 @@ Retcode Code_Diff()
 }
 
 // empile -1 si le TOS élément est égal à 0, 0 sinon
-// TODO
 Retcode Code_ZeroEgal()
 {
-    return ERR_NON_IMPL;
+    Donnee tos, resultat;
+    // on vérifie qu'il y a au moins 2 nombres au sommet
+    if (PileTop() < 1)
+        return ERR_PILE_VIDE;
+
+    // pop TOS
+    PilePop(&tos);
+
+    resultat = (tos == 0) ? FORTH_TRUE : FORTH_FALSE;
+    PilePush(resultat);
+
+    return OK;
 }
 
 // empile -1 si le TOS élément est différent de 0, 0 sinon
-// TODO
 Retcode Code_ZeroDiff()
 {
-    return ERR_NON_IMPL;
+    Donnee tos, resultat;
+    // on vérifie qu'il y a au moins 2 nombres au sommet
+    if (PileTop() < 1)
+        return ERR_PILE_VIDE;
+
+    // pop TOS
+    PilePop(&tos);
+
+    resultat = (tos != 0) ? FORTH_TRUE : FORTH_FALSE;
+    PilePush(resultat);
+
+    return OK;
 } 
 
 /*
