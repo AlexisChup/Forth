@@ -600,10 +600,21 @@ Retcode Code_Mult()
 }
 
 // empile le résultat (diviseur) de la division entière du TOS et du NOS
-// TODO
 Retcode Code_Div()
 {
-    return ERR_NON_IMPL;
+    Donnee tos,nos,resultat;
+    // on vérifie qu'il y a au moins 2 nombres au sommet
+    if (PileTop() < 2)
+        return ERR_PILE_VIDE;
+
+    // pop TOS et NOS
+    PilePop(&tos);
+    PilePop(&nos);
+
+    resultat = tos / nos;
+    PilePush(resultat);
+
+    return OK;
 }
 
 // empile le reste de  la division entière du TOS et du NOS
