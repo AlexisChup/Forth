@@ -53,6 +53,8 @@ Retcode DicoInit()
     DicoAdd("FALSE", MOT_NOYAU, DICO_FALSE, DICO_NOYAU, 0L, &Code_False, NULL);
     DicoAdd("<", MOT_NOYAU, DICO_INF, DICO_NOYAU, 0L, &Code_Inf, NULL);
     DicoAdd(">", MOT_NOYAU, DICO_SUP, DICO_NOYAU, 0L, &Code_Sup, NULL);
+    DicoAdd("=", MOT_NOYAU, DICO_EGAL, DICO_NOYAU, 0L, &Code_Egal, NULL);
+    DicoAdd("<>", MOT_NOYAU, DICO_DIFF, DICO_NOYAU, 0L, &Code_Diff, NULL);
 
     // *OPÉRATIONS MATHÉMATIQUES
     DicoAdd("@", MOT_NOYAU, DICO_GET, DICO_NOYAU, 0L, &Code_Get, NULL);
