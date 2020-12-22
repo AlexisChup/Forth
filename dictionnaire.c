@@ -48,6 +48,7 @@ Retcode DicoInit()
     DicoAdd("PICK", MOT_NOYAU, DICO_PICK, DICO_NOYAU, 0L, &Code_Pick, NULL);
     
     // *OPÉRATIONS LOGIQUES
+    DicoAdd("?DUP", MOT_NOYAU, DICO_ASKDUP, DICO_NOYAU, 0L, &Code_AskDup, NULL);
 
     // *OPÉRATIONS MATHÉMATIQUES
     DicoAdd("@", MOT_NOYAU, DICO_GET, DICO_NOYAU, 0L, &Code_Get, NULL);

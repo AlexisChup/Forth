@@ -323,7 +323,7 @@ Retcode Code_Pick()
     Index index = PileTop();
 
     if (index < 1)
-        return ERR_PILE_OUT;
+        return ERR_PILE_VIDE;
 
     if (index >= PileMax())
         return ERR_PILE_PLEINE;
@@ -377,10 +377,25 @@ Retcode Code_Roll()
 // ! OPÉRATIONS LOGIQUES
 
 // duplique la valeur du TOS si non-zéro
-// TODO
 Retcode Code_AskDup()
 {
-    return ERR_NON_IMPL;
+    Donnee val;
+    Index index = PileTop();
+
+    if (index < 1)
+        return ERR_PILE_VIDE;
+
+    if (index >= PileMax())
+        return ERR_PILE_PLEINE;
+
+    PileGet(&val);
+
+    if(val == 0)
+        return OK;
+
+    Code_Dup();
+
+    return OK;
 }
 
 // empile -1
