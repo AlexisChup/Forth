@@ -617,18 +617,42 @@ Retcode Code_Div()
     return OK;
 }
 
-// empile le reste de  la division entière du TOS et du NOS
-// TODO
+// empile le reste de la division entière du TOS et du NOS
 Retcode Code_Mod()
 {
-    return ERR_NON_IMPL;
+    Donnee tos,nos,resultat;
+    // on vérifie qu'il y a au moins 2 nombres au sommet
+    if (PileTop() < 2)
+        return ERR_PILE_VIDE;
+
+    // pop TOS et NOS
+    PilePop(&tos);
+    PilePop(&nos);
+
+    resultat = tos % nos;
+    PilePush(resultat);
+
+    return OK;
 }
 
 // empile le reste et le diviseur de la division entière du TOS et du NOS
-// TODO
 Retcode Code_DivMod()
 {
-    return ERR_NON_IMPL;
+    Donnee tos,nos,reste,diviseur;
+    // on vérifie qu'il y a au moins 2 nombres au sommet
+    if (PileTop() < 2)
+        return ERR_PILE_VIDE;
+
+    // pop TOS et NOS
+    PilePop(&tos);
+    PilePop(&nos);
+
+    reste = tos % nos;
+    diviseur = tos / nos;
+    PilePush(reste);
+    PilePush(diviseur);
+
+    return OK;
 }
 
 // remplace le TOS par sa valeur absolue

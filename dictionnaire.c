@@ -64,6 +64,8 @@ Retcode DicoInit()
     DicoAdd("-", MOT_NOYAU, DICO_MOINS, DICO_NOYAU, 0L, &Code_Moins, NULL);
     DicoAdd("*", MOT_NOYAU, DICO_MULT, DICO_NOYAU, 0L, &Code_Mult, NULL);
     DicoAdd("/", MOT_NOYAU, DICO_DIV, DICO_NOYAU, 0L, &Code_Div, NULL);
+    DicoAdd("MOD", MOT_NOYAU, DICO_MOD, DICO_NOYAU, 0L, &Code_Mod, NULL);
+    DicoAdd("/MOD", MOT_NOYAU, DICO_DIVMOD, DICO_NOYAU, 0L, &Code_DivMod, NULL);
 
 
     DicoAdd("@", MOT_NOYAU, DICO_GET, DICO_NOYAU, 0L, &Code_Get, NULL);
