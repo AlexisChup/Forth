@@ -64,7 +64,6 @@ Retcode Code_Txt()
     return ERR_NON_IMPL;
 }      
 
-
 // AFFICHAGE
 
 // code DICO_DOT
@@ -773,6 +772,7 @@ Retcode Code_RefValue(RefEntree ref)
     ** et la stocker dans la variable val via un transtypage :
     **      val = (Donnee)<....adresse du champ valeur...>;
     */
+    val = (Donnee) ref->val;
     PilePush(val);
     //printf("var %p:%s->%p\n",ref,ref->nom,val);
     return OK;

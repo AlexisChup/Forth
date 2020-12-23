@@ -73,7 +73,7 @@ Retcode DicoInit()
 
     // *FONCTIONS INDIRECTES ET AUTRES
     // DicoAdd("BASE", MOT_VARIABLE, DICO_NONE, DICO_SYSVAR, 10L, &Code_RefValue, NULL);
-    // DicoAdd("PROMPT", MOT_VARIABLE, DICO_NONE, DICO_SYSVAR, (Donnee)'>', &Code_RefValue, NULL);
+    DicoAdd("PROMPT", MOT_VARIABLE, DICO_NONE, DICO_SYSVAR, (Donnee)'>', &Code_RefValue, NULL);
 
     return OK;
 }
@@ -130,7 +130,6 @@ Retcode DicoAdd(char * mot,TypeMot type,IdNoyau id,int flag,Donnee val,CodeMot c
         *refptr = ref;
     }
 
-
     return OK;
 }
 
@@ -145,7 +144,7 @@ Retcode DicoAddVar(char * mot, RefEntree *refptr)
 // suppression de la part du dictionnaire postérieur é l'entrée, y incluse (au sens de plus rééent)
 Retcode DicoSupp(RefEntree ref)
 {
-        return ERR_NON_IMPL;
+    return ERR_NON_IMPL;
 }
 
 void DicoAfficheTous()
