@@ -174,7 +174,7 @@ Retcode Interprete(char * element)
 		}
 		break;
 	case MODE_DEFVAR:
-		DicoAddVar(&element, ref);
+		DicoAddVar(element, &ref);
 		modeSession = ancienModeSession;
 
 		break;
