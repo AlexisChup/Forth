@@ -23,6 +23,8 @@ char BufferModeString[BUF_SIZE+1];
 
 int indexBufferModeString;
 
+int base = 10;
+
 Retcode BufferModeStringInit()
 {
 	indexBufferModeString = 0;
@@ -43,12 +45,8 @@ InterpreteMode ancienModeSession = MODE_EXEC;
 // fonction interne : conversion d'un element en valeur numérique
 Retcode tokenToNum(char * element, Donnee * val)
 {
-    // TODO : tenir compte de la base numérique en cours (décimal, hexa, etc)
-	// * OK pour celui là
-    // on bloque ici en décimal
     char * fin;
-	*val = (Donnee)strtol(element,&fin,10);
-	printf("conv: element=%s val=%ld buff=%p fin=%p *fin=%x\n",element,*val,element,fin,*fin);
+	*val = (Donnee)strtol(element,&fin,base);
 
 	if (*fin != 0) // y a-t-il eu une erreur de conversion ?
 	{
@@ -76,8 +74,6 @@ Retcode Interprete(char * element)
 	Retcode ret;
 	Donnee val;
 
-	// DicoAfficheTous();
-
 	// Conversion en lettre capital, sauf si l'on est en mode string (pour ne pas modifier le texte)
 	if(modeSession != MODE_STRING)
 	{
@@ -88,7 +84,6 @@ Retcode Interprete(char * element)
 		}
 	}
 
-	fprintf(stderr,"interp: %s - mode %d\n",element,modeSession);
 	switch (modeSession)
 	{
 	case MODE_EXEC:
@@ -98,13 +93,6 @@ Retcode Interprete(char * element)
 		// printf("retCode : %d", ret);
 		if (ret == OK) // trouvé dans le dictionnaire
 		{
-			// *DEBUG
-			// fprintf(stdout, "ret : %d\n", ret);
-			// fprintf(stdout, "mot : %s\n ", ref->mot);
-			// fprintf(stdout, "Type : %d\n", ref->type);
-			// fprintf(stdout, "flag : %d\n", ref->flag);
-			// fprintf(stdout, "val : %ld\n", ref->val);
-
 			// on regarde le type d'entrée
 			switch (ref->type)
 			{
@@ -116,7 +104,6 @@ Retcode Interprete(char * element)
                     break;
 				}
 				// si oui, on exécute ce code
-				// ret = /* TODO exécutez le code associé à l'entrée */;
 				ret = ref->code();
 				// et on retourne le code d'exécution
 				return ret;
@@ -127,8 +114,7 @@ Retcode Interprete(char * element)
 				return ERR_DICO_TYPE_INCONNU;
             case MOT_VARIABLE:
                // y a-t-il du code associé ?
-				if (!ref->code)
-				// if (/* TODO extrayez le code associé à l'entrée, vérifiez si il existe */)
+				if (!(ref->code))
 				{
 				    return ERR_DICO_NOCODE;
 					break;
@@ -136,7 +122,6 @@ Retcode Interprete(char * element)
 				// si oui, on exécute ce code
 				// en lui passant la référence de l'entrée en paramètre
 				ret = ref->code(ref->val);
-				// ret = /* TODO exécutez le code associé à l'entrée */;
 				// et on retourne le code d'exécution
 				return ret;
 				break;

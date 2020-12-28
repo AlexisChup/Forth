@@ -41,15 +41,8 @@ Retcode lireLigne()
     RefEntree ref;
 
 	Prev = NULL; // positionne le pointeur de parcours
-
-    // prompt à rendre optionnel
-    // ret = DicoRecherche("PROMPT", &ref);
-    // if (ret == OK)
-    // {
-	//     fprintf(stdout,"%ld", ref->val);
-    // } else {
+    
     fprintf(stdout,">>");
-    // }
 
 	// lecture du buffer ligne
 	retb = fgets(Buffer,BUF_SIZE+1,stdin);

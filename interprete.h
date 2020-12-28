@@ -20,8 +20,9 @@ extern Retcode BufferModeStringInit();
 // variable globale pour indiquer si fini
 extern bool finSession;
 
-// variable globale pour indiquer le mode d'interprétation
+extern int base;
 
+// variable globale pour indiquer le mode d'interprétation
 extern InterpreteMode modeSession;
 
 // variable globale pour sauvegarder le mode d'interprétation

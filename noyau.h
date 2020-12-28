@@ -39,6 +39,7 @@
 extern Retcode Code_Quit(); // quitte la boucle principale
 
 // gestion de contexte
+extern Retcode Code_Base();     // Change de base numérique 
 extern Retcode Code_Comm();     // commentaire
 extern Retcode Code_AntiSlash();// vide la ligne en cours de lecture
 extern Retcode Code_Variable(); // définit une variable permanente
@@ -90,9 +91,8 @@ extern Retcode Code_Max();      // empile le plus grand du TOS et du NOS
 extern Retcode Code_Get(); // lit le contenu pointé par le TOS et le met sur la pile
 
 /*
-** TODO
+**
 ** ajouter les profils des autres fonctions implémentants les mots de la liste fournie
-* OK 
 */
 
 /*

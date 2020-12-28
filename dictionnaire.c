@@ -26,10 +26,11 @@ Retcode DicoInit()
     DicoAdd("QUIT", MOT_NOYAU, DICO_QUIT, DICO_NOYAU, 0L, &Code_Quit, NULL);
 
     // GESTION DE CONTEXTE
+    DicoAdd("BASE", MOT_VARIABLE, DICO_NONE, DICO_SYSVAR, 10L, &Code_RefValue, NULL);
     DicoAdd("\\", MOT_NOYAU, DICO_ANTISLASH, DICO_NOYAU, 0L, &Code_AntiSlash, NULL);
-    DicoAdd("COMMBEGIN", MOT_NOYAU, DICO_ANTISLASH, DICO_NOYAU, 0L, &Code_Comm, NULL);
-    DicoAdd(".\"", MOT_NOYAU, DICO_ANTISLASH, DICO_NOYAU, 0L, &Code_Txt, NULL);
-    DicoAdd("VARIABLE", MOT_NOYAU, DICO_ANTISLASH, DICO_NOYAU, 0L, &Code_Variable, NULL);
+    DicoAdd("COMMBEGIN", MOT_NOYAU, DICO_COMM, DICO_NOYAU, 0L, &Code_Comm, NULL);
+    DicoAdd(".\"", MOT_NOYAU, DICO_TXT, DICO_NOYAU, 0L, &Code_Txt, NULL);
+    DicoAdd("VARIABLE", MOT_NOYAU, DICO_VARIABLE, DICO_NOYAU, 0L, &Code_Variable, NULL);
 
     // AFFICHAGE
     DicoAdd(".", MOT_NOYAU, DICO_DOT, DICO_NOYAU, 0L, &Code_Dot, NULL);
@@ -97,7 +98,6 @@ Retcode DicoRecherche(char * mot, RefEntree *refptr)
         }
         // le mot est inconnu
         return ERR_DICO_INCONNU;
-
     } else {
         return ERR_PILE_VIDE;
     }
@@ -135,26 +135,59 @@ Retcode DicoAdd(char * mot,TypeMot type,IdNoyau id,int flag,Donnee val,CodeMot c
 // est Code_RefValue() (définie dans noyau.h)
 Retcode DicoAddVar(char * mot, RefEntree *refptr)
 {
-    return ERR_NON_IMPL;
+    RefEntree ref = malloc(sizeof(Entree));
+
+    // ajouter tous les champs de l'entrée
+    ref->mot = mot;
+    ref->code = &Code_RefValue;
+
+    Dico[indexDico] = ref;
+    indexDico += 1;
+
+    // on renvoie l'adresse si refptr n'est pas nulle
+    if(refptr != NULL)
+        *refptr = ref;
+
+    return OK;
 }
 
-// suppression de la part du dictionnaire postérieur é l'entrée, y incluse (au sens de plus rééent)
+// suppression de la part du dictionnaire postérieur à l'entrée, y incluse (au sens de plus récent)
 Retcode DicoSupp(RefEntree ref)
 {
-    return ERR_NON_IMPL;
-}
+	Retcode ret;
 
-void DicoAfficheTous()
-{
-    RefEntree ref;
+    ret = DicoRecherche(ref->mot, &ref);
 
+    if(ret != OK)
+    {
+        // cela veut soit dire que le nom n'existe pas
+        // ou bien que le dictionnaire est vide
+        // sachant que la fonction DicoRecherche s'occupe déjà
+        // de renvoyer le bon code d'erreur, on peut simplement
+        // renvoyer ret
+        return ret;
+    }
+
+    // le mot existe bien et on le supprime
+    RefEntree refptr;
+    bool isWordFound = false;
     for (Index i = 0; i < indexDico; i++)
     {
-        ref = Dico[i];
+        refptr = Dico[i];
+        if(!strcmp(ref->mot, refptr->mot))
+        {
+            // on a trouvé où se trouve le mot dans le dictionnaire
+            // on va maintenant déplacer chaque élément
+            isWordFound = true;
+        }
 
-        printf("mot : %s ", ref->mot);
-        printf("type : %d ", ref->type);
-        printf("val : %ld ", ref->val);
-        printf("flag : %d\n", ref->flag);
-    }  
+        if(isWordFound)
+        {
+            // on recule chaque élément
+            Dico[i-1] = Dico[i];
+        }
+    }
+
+    indexDico --;
+    return OK;
 }

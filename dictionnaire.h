@@ -23,7 +23,7 @@ typedef enum
 {
     DICO_NONE
     ,DICO_QUIT
-    ,DICO_COMM1, DICO_COMM2, DICO_ANTISLASH, DICO_VARIABLE, DICO_DOTTXT, DICO_TXT
+    ,DICO_BASE, DICO_COMM, DICO_ANTISLASH, DICO_VARIABLE, DICO_TXT
     ,DICO_DOT, DICO_DOTS, DICO_SPACE, DICO_CR, DICO_SPACES, DICO_EMIT
     ,DICO_GET, DICO_SET
     ,DICO_DROP, DICO_NIP, DICO_DUP, DICO_SWAP, DICO_OVER, DICO_ROT, DICO_MINUSROT, DICO_PICK, DICO_ROLL
@@ -63,13 +63,7 @@ typedef Retcode (*CodeMot)();
 // définition de la structure d'une entrée de dictionnaire
 typedef struct
 {
-/*
-** TODO
-** A VOUS DE REMPLIR !
-** il faut stocker : chaine de caracteres, type d'entrée, lien vers code, valeur associée, est suprimable?, ...
-    * OK !
-*/
-    char * mot;   // chaine de caractères
+    char * mot;                 // chaine de caractères
     TypeMot type;               // type d'entrée
     CodeMot code;               // lien vers code
     Donnee val;                 // valeur associée
@@ -103,8 +97,5 @@ extern Retcode DicoAddVar(char * mot, RefEntree *refptr);
 
 // suppression de la part du dictionnaire postérieur é l'entrée, y incluse (au sens de plus rééent)
 extern Retcode DicoSupp(RefEntree ref);
-
-// pour le debug, affiche toutes les entrées du dico
-extern void DicoAfficheTous();
 
 #endif // DICTIONNAIRE_H

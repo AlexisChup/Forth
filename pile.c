@@ -4,6 +4,7 @@
 Donnee stack[MAX_PILE_D];   // pile de données
 Index indexOfTheStack;      // index dans la pile de données
 
+// (ré)initialise la pile de données
 Retcode PileInit()
 {
     indexOfTheStack = 0;
@@ -16,6 +17,7 @@ Retcode PileInit()
     return OK;
 }
 
+// ajoute la valeur en paramètre sur le sommet de la pile. Retourne 0 si OK, un code d'erreur sinon
 Retcode PilePush(Donnee val)
 {
     if(indexOfTheStack < MAX_PILE_D)
@@ -32,6 +34,7 @@ Retcode PilePush(Donnee val)
     }
 }
 
+// retire la valeur du sommet de la pile et la retourne via le paramètre. Retourne 0 si OK; un code d'erreur sinon
 Retcode PilePop(Donnee *val)
 {
     if(indexOfTheStack > 0)
@@ -49,6 +52,7 @@ Retcode PilePop(Donnee *val)
     }
 }
 
+// récupére la valeur au sommet de la pile et la renvoie via le paramètre. Renvoie 0 si OK; un code d'erreur sinon
 Retcode PileGet(Donnee *val)
 {
     if(indexOfTheStack > 0)
@@ -66,6 +70,7 @@ Retcode PileGet(Donnee *val)
     }
 }
 
+// insére la valeur passée au-dessus de l'élément indiqué par l'index. PushN(val,0) == Push(val). Retour idem
 Retcode PilePushN(Donnee val, Index index)
 {
     if(index <= indexOfTheStack && indexOfTheStack < MAX_PILE_D)
@@ -88,6 +93,7 @@ Retcode PilePushN(Donnee val, Index index)
     }
 }
 
+// renvoie et retire l'élément indiqué par l'index. PopN(val,0) == Pop(val). Retour idem
 Retcode PilePopN(Donnee *val, Index index)
 {
     if(index <= indexOfTheStack-1 && indexOfTheStack > 0)
@@ -111,6 +117,7 @@ Retcode PilePopN(Donnee *val, Index index)
     }
 }
 
+// récupére la valeur de l'élément indiqué par l'index. GetN(val,0) == Get(val). Retour idem
 Retcode PileGetN(Donnee *val, Index index)
 {
     if(index < indexOfTheStack && indexOfTheStack > 0)
@@ -128,11 +135,13 @@ Retcode PileGetN(Donnee *val, Index index)
     }
 }
 
+// retourne la nombre maximum d'éléments dans la pile
 Index PileMax()
 {
     return MAX_PILE_D;
 }
 
+// retourne le nombre d'éléments actifs dans la pile
 Index PileTop()
 {
     return indexOfTheStack;

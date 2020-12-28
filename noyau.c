@@ -24,7 +24,7 @@ Retcode Code_Quit()
     return OK;
 }
 
-// ! GESTION DE CONTEXTE
+// GESTION DE CONTEXTE
 
 // commentaire
 Retcode Code_Comm()
@@ -735,12 +735,11 @@ Retcode Code_Get()
 }
 
 /*
-** TODO
 ** ajouter les autres fonctions immédiates en vous inspirant de celles ci-dessus
 */
 
 /*
-* // ! FONCTIONS INDIRECTES ET AUTRES
+** FONCTIONS INDIRECTES ET AUTRES
 ** autres fonctions utilisés par l'interprétation des mots
 ** Il s'agit ici de fonctions communes à plusieurs mots
 */
@@ -749,7 +748,6 @@ Retcode Code_Get()
 // fonction à exécuter lorsque l'on interprete une variable en exécution immédiate :
 // on va ajouter en sommet de pile l'adresse de la valeur de ladite variable,
 // cad l'adresse du champ "valeur" de l'entrée du dictionnaire passée en paramètre
-// TODO
 Retcode Code_RefValue(RefEntree ref)
 {
     // cette fonction générique est celle installée dans toutes les variables
@@ -766,15 +764,8 @@ Retcode Code_RefValue(RefEntree ref)
         AfficheErreur(ERR_PILE_PLEINE,"pile pleine");
         return ERR_PILE_PLEINE;
     }
-    // action
-    /*
-    ** TODO
-    ** récuppérer l'adresse du champ "valeur" de l'entrée donnée,
-    ** et la stocker dans la variable val via un transtypage :
-    **      val = (Donnee)<....adresse du champ valeur...>;
-    */
+
     val = (Donnee) ref->val;
     PilePush(val);
-    //printf("var %p:%s->%p\n",ref,ref->nom,val);
     return OK;
 }

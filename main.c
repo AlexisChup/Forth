@@ -27,8 +27,8 @@ int main(int argc, char * argv[])
     InterpreteInit();
 
     // boucle générale
-    // * lire les mots au clavier
-    // * les interpreter
+    // lire les mots au clavier
+    // les interpreter
     while (finSession==false)
     {
         ret=ElementSuivant(&element);
