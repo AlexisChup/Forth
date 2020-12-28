@@ -14,6 +14,22 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <ctype.h>
+
+#define BUF_SIZE 512
+
+// buffer pour le mode string
+char BufferModeString[BUF_SIZE+1];
+
+int indexBufferModeString;
+
+Retcode BufferModeStringInit()
+{
+	indexBufferModeString = 0;
+    BufferModeString[0] = '\0';
+    return OK;
+}
+
 
 // variable globale pour indiquer si fini
 bool finSession = false;
@@ -61,6 +77,16 @@ Retcode Interprete(char * element)
 	Donnee val;
 
 	// DicoAfficheTous();
+
+	// Conversion en lettre capital, sauf si l'on est en mode string (pour ne pas modifier le texte)
+	if(modeSession != MODE_STRING)
+	{
+		char *s = element;
+		while (*s) {
+			*s = toupper((unsigned char) *s);
+			s++;
+		}
+	}
 
 	fprintf(stderr,"interp: %s - mode %d\n",element,modeSession);
 	switch (modeSession)
@@ -155,6 +181,24 @@ Retcode Interprete(char * element)
 
 		break;
 	case MODE_STRING:
+		if(!strcmp(element, "\""))	// fin du mode string
+		{
+			BufferModeString[indexBufferModeString] = '\0';
+
+			AfficherChaine(BufferModeString);
+
+			modeSession = ancienModeSession;
+		}
+
+		for (int i = 0; i < strlen(element); i++)
+		{
+			BufferModeString[indexBufferModeString] = element[i];
+			indexBufferModeString ++;
+		}
+		
+
+		break;
+
 	case MODE_DEFMOT:
 		AfficheErreur(ERR_MODE_IGNORE,"mode interprete non implémenté");
 		return ERR_MODE_IGNORE;

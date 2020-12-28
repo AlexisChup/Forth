@@ -32,6 +32,7 @@ int main(int argc, char * argv[])
     while (finSession==false)
     {
         ret=ElementSuivant(&element);
+
         switch (ret)
         {
         case OK:

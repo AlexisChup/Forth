@@ -53,10 +53,14 @@ Retcode Code_Variable()
 }
 
 // ‘imprime’ le texte jusqu’à rencontrer le mot "
-// TODO
 Retcode Code_Txt()
 {
-    return ERR_NON_IMPL;
+    ancienModeSession = modeSession;
+    modeSession = MODE_STRING;
+
+    BufferModeStringInit();
+
+    return OK;
 }      
 
 // AFFICHAGE

@@ -14,6 +14,9 @@
 // les modes de fonctionnement de l'automate d'interprétation
 typedef enum { MODE_EXEC, MODE_COMM, MODE_STRING, MODE_DEFMOT, MODE_DEFVAR } InterpreteMode;
 
+// initialise le buffer du mode string
+extern Retcode BufferModeStringInit();
+
 // variable globale pour indiquer si fini
 extern bool finSession;
 
