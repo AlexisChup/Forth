@@ -17,6 +17,13 @@ typedef enum { MODE_EXEC, MODE_COMM, MODE_STRING, MODE_DEFMOT, MODE_DEFVAR } Int
 // variable globale pour indiquer si fini
 extern bool finSession;
 
+// variable globale pour indiquer le mode d'interprétation
+
+extern InterpreteMode modeSession;
+
+// variable globale pour sauvegarder le mode d'interprétation
+extern InterpreteMode ancienModeSession;
+
 // initialisation de l'automate
 extern Retcode InterpreteInit();
 

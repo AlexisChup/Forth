@@ -26,11 +26,13 @@ Retcode Code_Quit()
 
 // ! GESTION DE CONTEXTE
 
-// imprime le TOS
-// TODO
+// commentaire
 Retcode Code_Comm()
 {
-    return ERR_NON_IMPL;
+    ancienModeSession = modeSession;
+    modeSession = MODE_COMM;
+
+    return OK;
 }     
 
 // code DICO_ANTISLASH
@@ -41,13 +43,6 @@ Retcode Code_AntiSlash()
     ret = PurgerLigne();
 
     return ret;
-}
-
-// définition d’un nouveau mot
-// TODO
-Retcode Code_Def()
-{
-    return ERR_NON_IMPL;
 }
 
 // définit une variable permanente

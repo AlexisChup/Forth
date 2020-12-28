@@ -21,6 +21,9 @@ bool finSession = false;
 // variable globale pour indiquer le mode d'interprétation
 InterpreteMode modeSession = MODE_EXEC;
 
+// variable globale pour sauvegarder le mode d'interprétation
+InterpreteMode ancienModeSession = MODE_EXEC;
+
 // fonction interne : conversion d'un element en valeur numérique
 Retcode tokenToNum(char * element, Donnee * val)
 {
@@ -146,6 +149,11 @@ Retcode Interprete(char * element)
 		break;
 	case MODE_DEFVAR:
 	case MODE_COMM:
+		// fin du commentaire
+		if(!strcmp(element, "COMMEND"))
+			modeSession = ancienModeSession;
+
+		break;
 	case MODE_STRING:
 	case MODE_DEFMOT:
 		AfficheErreur(ERR_MODE_IGNORE,"mode interprete non implémenté");

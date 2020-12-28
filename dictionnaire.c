@@ -27,6 +27,7 @@ Retcode DicoInit()
 
     // *GESTION DE CONTEXTE
     DicoAdd("\\", MOT_NOYAU, DICO_ANTISLASH, DICO_NOYAU, 0L, &Code_AntiSlash, NULL);
+    DicoAdd("COMMBEGIN", MOT_NOYAU, DICO_ANTISLASH, DICO_NOYAU, 0L, &Code_Comm, NULL);
 
     // AFFICHAGE
     DicoAdd(".", MOT_NOYAU, DICO_DOT, DICO_NOYAU, 0L, &Code_Dot, NULL);

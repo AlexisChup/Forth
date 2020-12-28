@@ -39,9 +39,8 @@
 extern Retcode Code_Quit(); // quitte la boucle principale
 
 // gestion de contexte
-extern Retcode Code_Comm();     // imprime le TOS
+extern Retcode Code_Comm();     // commentaire
 extern Retcode Code_AntiSlash();// vide la ligne en cours de lecture
-extern Retcode Code_Def();      // définition d’un nouveau mot 
 extern Retcode Code_Variable(); // définit une variable permanente
 extern Retcode Code_Txt();      // ‘imprime’ le texte jusqu’à rencontrer le mot "
 
