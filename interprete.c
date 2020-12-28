@@ -174,6 +174,10 @@ Retcode Interprete(char * element)
 		}
 		break;
 	case MODE_DEFVAR:
+		DicoAddVar(&element, ref);
+		modeSession = ancienModeSession;
+
+		break;
 	case MODE_COMM:
 		// fin du commentaire
 		if(!strcmp(element, "COMMEND"))
@@ -196,7 +200,6 @@ Retcode Interprete(char * element)
 			indexBufferModeString ++;
 		}
 		
-
 		break;
 
 	case MODE_DEFMOT:

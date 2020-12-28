@@ -25,10 +25,11 @@ Retcode DicoInit()
     // CONTRÔLE GÉNÉRAL
     DicoAdd("QUIT", MOT_NOYAU, DICO_QUIT, DICO_NOYAU, 0L, &Code_Quit, NULL);
 
-    // *GESTION DE CONTEXTE
+    // GESTION DE CONTEXTE
     DicoAdd("\\", MOT_NOYAU, DICO_ANTISLASH, DICO_NOYAU, 0L, &Code_AntiSlash, NULL);
     DicoAdd("COMMBEGIN", MOT_NOYAU, DICO_ANTISLASH, DICO_NOYAU, 0L, &Code_Comm, NULL);
     DicoAdd(".\"", MOT_NOYAU, DICO_ANTISLASH, DICO_NOYAU, 0L, &Code_Txt, NULL);
+    DicoAdd("VARIABLE", MOT_NOYAU, DICO_ANTISLASH, DICO_NOYAU, 0L, &Code_Variable, NULL);
 
     // AFFICHAGE
     DicoAdd(".", MOT_NOYAU, DICO_DOT, DICO_NOYAU, 0L, &Code_Dot, NULL);
@@ -72,10 +73,6 @@ Retcode DicoInit()
     DicoAdd("MIN", MOT_NOYAU, DICO_MIN, DICO_NOYAU, 0L, &Code_Min, NULL);
     DicoAdd("MAX", MOT_NOYAU, DICO_MAX, DICO_NOYAU, 0L, &Code_Max, NULL);
     DicoAdd("@", MOT_NOYAU, DICO_GET, DICO_NOYAU, 0L, &Code_Get, NULL);
-
-    // *FONCTIONS INDIRECTES ET AUTRES
-    // DicoAdd("BASE", MOT_VARIABLE, DICO_NONE, DICO_SYSVAR, 10L, &Code_RefValue, NULL);
-    DicoAdd("PROMPT", MOT_VARIABLE, DICO_NONE, DICO_SYSVAR, (Donnee)'>', &Code_RefValue, NULL);
 
     return OK;
 }
@@ -128,9 +125,7 @@ Retcode DicoAdd(char * mot,TypeMot type,IdNoyau id,int flag,Donnee val,CodeMot c
 
     // on renvoie l'adresse si refptr n'est pas nulle
     if(refptr != NULL)
-    {
         *refptr = ref;
-    }
 
     return OK;
 }

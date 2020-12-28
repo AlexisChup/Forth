@@ -46,10 +46,12 @@ Retcode Code_AntiSlash()
 }
 
 // définit une variable permanente
-// TODO
 Retcode Code_Variable()
 {
-    return ERR_NON_IMPL;
+    ancienModeSession = modeSession;
+    modeSession = MODE_DEFVAR;
+
+    return OK;
 }
 
 // ‘imprime’ le texte jusqu’à rencontrer le mot "
@@ -717,7 +719,7 @@ Retcode Code_Get()
     Donnee *ptr;
 
     // on vérifie qu'il y a au moins 2 nombres au sommet
-    if (PileTop() < 1)
+    if (PileTop() < 2)
         return ERR_PILE_VIDE;   
 
     // on décompose : lire le sommet de la pile comme une donnée
