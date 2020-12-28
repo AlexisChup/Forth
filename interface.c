@@ -12,6 +12,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <ctype.h>
 
 // taille max du buffer d'entrée
 #define BUF_SIZE 512
@@ -116,6 +117,14 @@ Retcode ElementSuivant(char **elem)
     Prev = token;
 	strncpy(Element,token,BUF_SIZE);
     *elem = Element;
+
+    // Convert to upper case
+    char *s = *elem;
+    while (*s) {
+        *s = toupper((unsigned char) *s);
+        s++;
+    }
+
     return OK;
 }
 
